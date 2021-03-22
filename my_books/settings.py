@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'my_books_api.apps.MyBooksApiConfig',
+    'my_books_frontend.apps.MyBooksFrontendConfig',
 ]
 
 MIDDLEWARE = [
