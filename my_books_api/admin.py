@@ -1,2 +1,5 @@
+from django.contrib import admin
 
-# Register your models here.
+from my_books_api.models import Book
+
+admin.site.register(Book)
