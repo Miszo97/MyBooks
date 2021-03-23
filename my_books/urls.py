@@ -20,4 +20,5 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('my_books_api.urls')),
+    path('', include('my_books_frontend.urls')),
 ]
