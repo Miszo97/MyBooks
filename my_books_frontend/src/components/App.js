@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import {AppBar ,Toolbar } from "@material-ui/core";
+import HomePage from "./HomePage";
+import Link from '@material-ui/core/Link';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -8,9 +12,16 @@ export default class App extends Component {
 
   render() {
     return (
-        <div className="App">
-          Hello, world
-        </div>
+      <div className="App">
+        <AppBar position="static">
+          <Toolbar>
+            <Link href="#">
+              Link
+            </Link>
+          </Toolbar>
+        </AppBar>
+        <HomePage/>
+      </div>
     );
   }
 }
