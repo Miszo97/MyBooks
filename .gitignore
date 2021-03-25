@@ -134,6 +134,3 @@ settings.json
 
 #node modules
 node_modules/
-
-# react
-main.js*
