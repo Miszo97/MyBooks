@@ -11,7 +11,6 @@ export default function MyBooksTable(props) {
           {
             title: "Title",
             field: "title",
-            validate: (rowData) => rowData.title.length > 0,
           },
           {
             title: "Author",
@@ -24,26 +23,15 @@ export default function MyBooksTable(props) {
           {
             title: "Page count",
             field: "page_count",
-            validate: (rowData) => {
-              return (
-                rowData.page_count > 0 && Number.isInteger(rowData.pub_date)
-              );
-            },
           },
 
           {
             title: "Published",
             field: "pub_date",
-            validate: (rowData) => {
-              return (
-                rowData.page_count > 0 && Number.isInteger(rowData.pub_date)
-              );
-            },
           },
           {
             title: "Language",
             field: "language",
-            validate: (rowData) => /^[a-zA-Z]+$/.test(rowData.language),
           },
         ]}
         data={props.data}
