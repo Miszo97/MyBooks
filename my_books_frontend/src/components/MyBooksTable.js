@@ -20,12 +20,6 @@ export default function MyBooksTable(props) {
           {
             title: "ISBN",
             field: "isbn_number",
-            validate: (rowData) => {
-              return (
-                rowData.isbn_number.length == 10 ||
-                rowData.isbn_number.length == 13
-              );
-            },
           },
           {
             title: "Page count",
