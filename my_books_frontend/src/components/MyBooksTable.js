@@ -2,8 +2,6 @@ import MaterialTable from "material-table";
 import React from "react";
 import { Box } from "@material-ui/core";
 
-const ISBN = require("isbn-verify");
-
 export default function MyBooksTable(props) {
   return (
     <Box mt={2}>
@@ -18,23 +16,35 @@ export default function MyBooksTable(props) {
           {
             title: "Author",
             field: "author",
-            validate: (rowData) => /^[a-z ,.'-]+$/i.test(rowData.author),
           },
           {
             title: "ISBN",
             field: "isbn_number",
-            validate: (rowData) => rowData.isbn_number.length > 0,
+            validate: (rowData) => {
+              return (
+                rowData.isbn_number.length == 10 ||
+                rowData.isbn_number.length == 13
+              );
+            },
           },
           {
             title: "Page count",
             field: "page_count",
+            validate: (rowData) => {
+              return (
+                rowData.page_count > 0 && Number.isInteger(rowData.pub_date)
+              );
+            },
           },
 
           {
             title: "Published",
             field: "pub_date",
-            validate: (rowData) =>
-              rowData.pub_date > 0 && rowData.pub_date < 2021,
+            validate: (rowData) => {
+              return (
+                rowData.page_count > 0 && Number.isInteger(rowData.pub_date)
+              );
+            },
           },
           {
             title: "Language",

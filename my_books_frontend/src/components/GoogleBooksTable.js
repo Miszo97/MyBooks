@@ -1,6 +1,23 @@
 import MaterialTable from "material-table";
 import React from "react";
 
+function convertDateToJustYear(date) {
+  const dash_index = date.indexOf("-");
+  if (dash_index != -1) {
+    date = date.slice(0, dash_index);
+  }
+  return date;
+}
+
+function getIsbnNumberOrNull(industryIdentifiers) {
+  industryIdentifiers.forEach((e) => {
+    if (e["type"] == "ISBN_10" || e["type"] == "ISBN_13") {
+      return e["identifier"];
+    }
+  });
+  return null;
+}
+
 function parseResult(result) {
   let parsed_results = [];
   result.items.forEach((element) => {
@@ -8,30 +25,28 @@ function parseResult(result) {
       id: element.id,
       title: element.volumeInfo.title,
       page_count: element.volumeInfo.pageCount,
-      pub_date: element.volumeInfo.publishedDate,
       language: element.volumeInfo.language,
     };
+
     if (element.volumeInfo.authors != undefined) {
       newBook["author"] = element.volumeInfo.authors.join(", ");
     }
-    const dash_index = element.volumeInfo.publishedDate.indexOf("-");
-    if (dash_index != -1) {
-      newBook["pub_date"] = element.volumeInfo.publishedDate.slice(
-        0,
-        dash_index
+
+    if (element.volumeInfo.publishedDate != undefined) {
+      newBook["pub_date"] = convertDateToJustYear(
+        element.volumeInfo.publishedDate
       );
-    } else {
-      newBook["pub_date"] = element.volumeInfo.publishedDate;
     }
 
     const industryIdentifiers = element.volumeInfo.industryIdentifiers;
+
     if (industryIdentifiers != undefined) {
-      industryIdentifiers.forEach((e) => {
-        if (e["type"] == "ISBN_10" || e["type"] == "ISBN_13") {
-          newBook["isbn_number"] = e["identifier"];
-        }
-      });
+      isbn_number = getIsbnNumberOrNull(industryIdentifiers);
+      if (isbn_number != null) {
+        newBook["isbn_number"] = isbn_number;
+      }
     }
+
     parsed_results.push(newBook);
   });
   return parsed_results;
