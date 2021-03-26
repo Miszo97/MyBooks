@@ -19,7 +19,7 @@ http POST http://127.0.0.1:8000/api/books author='John' title='Island' language=
 ```
 http http://127.0.0.1:8000/api/books?title=John&language=en&pub_date=2015-2020
 ```
-## Delete a book with id
+## Delete a book with an id
 ```
 http DELETE http://127.0.0.1:8000/api/books/1
 ```
