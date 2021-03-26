@@ -3,11 +3,11 @@ from django.db import models
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
+    author = models.CharField(max_length=200, blank=True)
     pub_date = models.PositiveSmallIntegerField()
-    isbn_number = models.CharField(max_length=15)
-    page_count = models.IntegerField()
-    thumbnail = models.URLField()
+    isbn_number = models.CharField(max_length=15, blank=True)
+    page_count = models.IntegerField(blank=True)
+    thumbnail = models.URLField(blank=True)
     language = models.CharField(max_length=10)
 
     def __str__(self):
