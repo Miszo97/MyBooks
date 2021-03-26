@@ -17,7 +17,7 @@ http POST http://127.0.0.1:8000/api/books author='John' title='Island' language=
 ```
 ## Filter books
 ```
-http http://127.0.0.1:8000/api/?title=John&language=en&pub_date=2015-2020
+http http://127.0.0.1:8000/api/books?title=John&language=en&pub_date=2015-2020
 ```
 ## Delete a book with id
 ```
