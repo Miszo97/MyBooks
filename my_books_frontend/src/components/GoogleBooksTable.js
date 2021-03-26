@@ -22,7 +22,7 @@ function parseResult(result) {
   let parsed_results = [];
   result.items.forEach((element) => {
     const newBook = {
-      id: element.id,
+      google_id: element.id,
       title: element.volumeInfo.title,
       page_count: element.volumeInfo.pageCount,
       language: element.volumeInfo.language,
