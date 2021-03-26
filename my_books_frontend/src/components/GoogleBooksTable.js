@@ -41,7 +41,7 @@ function parseResult(result) {
     const industryIdentifiers = element.volumeInfo.industryIdentifiers;
 
     if (industryIdentifiers != undefined) {
-      isbn_number = getIsbnNumberOrNull(industryIdentifiers);
+      let isbn_number = getIsbnNumberOrNull(industryIdentifiers);
       if (isbn_number != null) {
         newBook["isbn_number"] = isbn_number;
       }
