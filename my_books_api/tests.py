@@ -84,7 +84,7 @@ class BookViewDetail(TestCase):
         res = self.client.get('/api/books/1')
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-    def test_delete_book(self):
+    def test_delete_existing_book(self):
         create_a_book()
 
         res = self.client.delete('/api/books/1')
@@ -92,7 +92,11 @@ class BookViewDetail(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(Book.objects.count(), 0)
 
-    def test_edit_book(self):
+    def test_delete_non_existing_book(self):
+        res = self.client.delete('/api/books/1')
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_edit_existing_book(self):
         create_a_book()
         changes = {'page_count': 100}
         res = self.client.patch('/api/books/1', changes, format='json')
@@ -101,3 +105,9 @@ class BookViewDetail(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(book.page_count, 100)
+
+    def test_edit_non_existing_book(self):
+        changes = {'page_count': 100}
+        res = self.client.patch('/api/books/1', changes, format='json')
+
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
