@@ -11,6 +11,7 @@ export default function MyBooksTable(props) {
           {
             title: "Title",
             field: "title",
+            validate: (rowData) => rowData.title.length > 0,
           },
           {
             title: "Author",
