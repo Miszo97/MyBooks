@@ -89,7 +89,7 @@ class BookViewDetail(TestCase):
 
         res = self.client.delete('/api/books/1')
 
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Book.objects.count(), 0)
 
     def test_delete_non_existing_book(self):

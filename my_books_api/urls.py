@@ -7,5 +7,5 @@ app_name = 'my_books_api'
 
 urlpatterns = [
     path('books', BooksView.as_view(), name='books'),
-    path('books/<int:id>', BooksDetailView.as_view(), name='books'),
+    path('books/<int:pk>', BooksDetailView.as_view(), name='books'),
 ]
